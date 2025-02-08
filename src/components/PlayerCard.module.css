@@ -1,0 +1,78 @@
+.playerCard {
+  display: flex;
+  padding-left: 10px;
+  border-radius: 8px;
+  background-color: white;
+  margin: 10px 10px;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.playerName {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+}
+
+.playerAge {
+  color: black;
+}
+
+.playerJerseyNumber {
+  color: black;
+}
+
+.playerPosition {
+  color: black;
+}
+.playerTeam {
+  color: black;
+}
+
+.playerImage {
+  width: 370px; /* Adjust the size */
+  height: 270px;
+  object-fit: cover;
+}
+
+.imageContainer {
+  background-color: white;
+}
+
+.teamInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background-color: white;
+}
+
+.statsInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.average {
+  border-left: 1px solid black; /* Optional: Adds a border around each stat */
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 8px;
+
+  background-color: white;
+  text-align: center;
+  min-width: 60px; /* Ensures even width */
+}
+
+.APG {
+  border: 1px solid black; /* Optional: Adds a border around each stat */
+
+  padding: 8px;
+
+  background-color: white;
+  text-align: center;
+  min-width: 60px; /* Ensures even width */
+}
+
+.breakText {
+  white-space: pre-line;
+}

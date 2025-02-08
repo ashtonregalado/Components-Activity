@@ -1,0 +1,9 @@
+#root {
+  display: flex;
+  flex-direction: column; /* Adjust if needed */
+  align-items: center; /* Centers content horizontally */
+  justify-content: center; /* Centers content vertically */
+  min-height: 100vh; /* Ensures full-screen height */
+  background-color: #f4f4f4; /* Optional: Background color */
+  padding: 20px;
+}
