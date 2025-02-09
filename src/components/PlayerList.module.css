@@ -1,9 +1,9 @@
 .playerList {
-  list-style: none; /* Remove default bullets */
+  list-style: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 16px; /* Space between cards */
+  gap: 16px;
   justify-content: center;
   flex-direction: column;
 }
@@ -16,7 +16,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
   margin-bottom: 40px;
-  width: 800px;
+  width: 500px;
 }
 
 .playerList li:hover {

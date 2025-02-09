@@ -1,24 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./PlayerCard.module.css";
-
-type stats = {
-  PPG: number;
-  RPG: number;
-  APG: number;
-};
-
-export interface Player {
-  id: number;
-  name: string;
-  number: number;
-  age: number;
-  position: string;
-  team: string;
-  image: string;
-  stats: stats;
-}
+import { Player } from "../data/PlayerInfo";
 
 const PlayerCard: React.FC<{ player: Player }> = ({ player }) => {
+  const [showStats, setShowStats] = useState(false);
+
   return (
     <div className={styles.playerCard}>
       <div className={styles.imageContainer}>
@@ -26,9 +12,9 @@ const PlayerCard: React.FC<{ player: Player }> = ({ player }) => {
           src={player.image}
           alt={player.name}
           className={styles.playerImage}
-        ></img>
+        />
       </div>
-      <div>
+      <div className={styles.playerInfo}>
         <div className={styles.teamInfo}>
           <p className={styles.playerTeam}>{player.team}</p>
           <p>|</p>
@@ -36,20 +22,44 @@ const PlayerCard: React.FC<{ player: Player }> = ({ player }) => {
           <p>|</p>
           <p className={styles.playerPosition}>{player.position}</p>
         </div>
+
         <p className={styles.playerName}>{player.name}</p>
         <p className={styles.playerAge}>Age: {player.age}</p>
 
-        <div className={styles.statsInfo}>
-          <div className={styles.average}>
-            <p className={styles.breakText}>{"PPG\n" + player.stats.PPG}</p>
+        {/* Dropdown Button */}
+        <span
+          className={styles.clickableText}
+          onClick={() => setShowStats(!showStats)}
+        >
+          {showStats ? "Hide Stats" : "See Stats"}
+        </span>
+
+        {/* Dropdown Content */}
+        {showStats && (
+          <div className={styles.statsInfo}>
+            <div className={styles.average}>
+              <p className={styles.breakText}>
+                <span>PPG</span>
+                <br />
+                <span>{player.stats.PPG}</span>
+              </p>
+            </div>
+            <div className={styles.average}>
+              <p className={styles.breakText}>
+                <span>RPG</span>
+                <br />
+                <span>{player.stats.RPG}</span>
+              </p>
+            </div>
+            <div className={styles.APG}>
+              <p className={styles.breakText}>
+                <span>APG</span>
+                <br />
+                <span>{player.stats.APG}</span>
+              </p>
+            </div>
           </div>
-          <div className={styles.average}>
-            <p className={styles.breakText}>{"RPG\n" + player.stats.RPG}</p>
-          </div>
-          <div className={styles.APG}>
-            <p className={styles.breakText}>{"APG\n" + player.stats.APG}</p>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

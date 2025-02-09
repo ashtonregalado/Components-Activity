@@ -1,4 +1,4 @@
-import { Player } from "../components/PlayerCard";
+import { Player } from "./PlayerInfo";
 
 export const Players: Player[] = [
   {
@@ -105,7 +105,7 @@ export const Players: Player[] = [
   {
     id: 11,
     name: "Jimmy Butler",
-    number: 22,
+    number: 10,
     age: 34,
     position: "Small Forward",
     team: "Golden State Warriors",

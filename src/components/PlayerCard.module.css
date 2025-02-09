@@ -5,7 +5,7 @@
   background-color: white;
   margin: 10px 10px;
   gap: 10px;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .playerImage {
-  width: 370px; /* Adjust the size */
+  width: 370px;
   height: 270px;
   object-fit: cover;
 }
@@ -53,26 +53,53 @@
 }
 
 .average {
-  border-left: 1px solid black; /* Optional: Adds a border around each stat */
+  border-left: 1px solid black;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   padding: 8px;
 
-  background-color: white;
+  background-color: rgb(232, 232, 232);
   text-align: center;
-  min-width: 60px; /* Ensures even width */
+  min-width: 60px;
 }
 
 .APG {
-  border: 1px solid black; /* Optional: Adds a border around each stat */
-
+  border: 1px solid black;
   padding: 8px;
-
-  background-color: white;
+  background-color: rgb(232, 232, 232);
   text-align: center;
-  min-width: 60px; /* Ensures even width */
+  min-width: 60px;
 }
 
 .breakText {
   white-space: pre-line;
+}
+
+.dropdownContent {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.playerInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.clickableText {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.clickableText:hover {
+  color: #0056b3;
 }
