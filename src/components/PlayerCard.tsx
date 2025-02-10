@@ -24,7 +24,7 @@ const PlayerCard: React.FC<{ player: Player }> = ({ player }) => {
         </div>
 
         <p className={styles.playerName}>{player.name}</p>
-        <p className={styles.playerAge}>Age: {player.age}</p>
+        <p className={styles.playerAge}>Age: {player.age} years</p>
 
         {/* Dropdown Button */}
         <span
