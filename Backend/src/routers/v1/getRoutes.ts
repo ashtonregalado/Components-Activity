@@ -1,14 +1,9 @@
-import { Router, Request, Response, NextFunction } from "express";
+import { Router, Request, Response } from "express";
 
 const router = Router();
 
-router.get("/", (req: Request, res: Response, next: NextFunction) => {
-  try {
-    res.send("Hello World");
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
+router.get("/", (req: Request, res: Response) => {
+  res.json({ message: "I am a basketball player" });
 });
 
 export default router;
