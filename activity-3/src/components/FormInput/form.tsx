@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 import AddButton from "../Buttons/addButton";
 
-interface FormDataProps {
+export interface FormDataProps {
   firstName: string;
   lastName: string;
   groupName: string;
   role: string;
-  expectedSalary: string;
+  expectedSalary: number;
   expectedDateOfDefense: string;
 }
 
@@ -17,15 +17,39 @@ const InputForm: React.FC = () => {
     lastName: "",
     groupName: "",
     role: "",
-    expectedSalary: "",
+    expectedSalary: 0,
     expectedDateOfDefense: "",
+  });
+
+  const [notification, setNotification] = useState<{
+    message: string;
+    type: "success" | "error" | "";
+  }>({
+    message: "",
+    type: "",
   });
 
   const formSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (
+      !form.firstName ||
+      !form.lastName ||
+      !form.groupName ||
+      !form.role ||
+      !form.expectedSalary ||
+      !form.expectedDateOfDefense
+    ) {
+      setNotification({ message: "All fields are required!", type: "error" });
+
+      setTimeout(() => {
+        setNotification({ message: "", type: "" });
+      }, 3000);
+      return;
+    }
+
     try {
-      const response = await fetch("http://localhost:3000/post/form", {
+      const response = await fetch("http://localhost:4000/post/form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,22 +64,45 @@ const InputForm: React.FC = () => {
       const result = await response.json();
       console.log("Form submitted successfully:", result);
 
+      setNotification({
+        message: "Form submitted successfully!",
+        type: "success",
+      });
+
       setForm({
         firstName: "",
         lastName: "",
         groupName: "",
         role: "",
-        expectedSalary: "",
+        expectedSalary: 0,
         expectedDateOfDefense: "",
       });
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Failed to submit form. Please try again.");
+      setNotification({
+        message: "Failed to submit form. Please try again.",
+        type: "error",
+      });
     }
+
+    setTimeout(() => {
+      setNotification({ message: "", type: "" });
+    }, 3000);
   };
 
   return (
     <div className="bg-white flex flex-col justify-center items-center rounded-lg shadow-lg p-6 w-full max-w-lg">
+      {notification.message && (
+        <div
+          className={`fixed top-5 left-1/2 transform -translate-x-1/2 px-4 py-3 text-white rounded-md shadow-lg ${
+            notification.type === "success" ? "bg-green-500" : "bg-red-500"
+          }`}
+          style={{ zIndex: 1000 }}
+        >
+          {notification.message}
+        </div>
+      )}
+
       <h3 className="text-blue-950 text-2xl font-sans font-semibold mb-5">
         FILL UP FORM
       </h3>
@@ -91,7 +138,7 @@ const InputForm: React.FC = () => {
             onChange={(e) =>
               setForm((prevForm) => ({
                 ...prevForm,
-                lastname: e.target.value,
+                lastName: e.target.value,
               }))
             }
           ></input>
@@ -139,13 +186,14 @@ const InputForm: React.FC = () => {
           </p>
           <input
             className="bg-white border-1 border-gray-300 text-black text-sm mb-5 pl-3 w-80 h-8 rounded-sm"
-            type="text"
-            value={form.expectedSalary}
+            type="number"
+            value={form.expectedSalary == 0 ? "" : form.expectedSalary}
             placeholder="Enter your expected salary"
             onChange={(e) =>
               setForm((prevForm) => ({
                 ...prevForm,
-                expectedSalary: e.target.value,
+                expectedSalary:
+                  e.target.value === "" ? 0 : Number(e.target.value),
               }))
             }
           ></input>
@@ -169,7 +217,9 @@ const InputForm: React.FC = () => {
           ></input>
         </div>
 
-        <AddButton />
+        <div className="flex justify-center">
+          <AddButton />
+        </div>
       </form>
     </div>
   );
