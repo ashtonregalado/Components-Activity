@@ -1,14 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { FormDataProps } from "../FormInput/form";
 import DeleteButton from "./deleteButton";
 
+import { FormDataProps } from "../FormInput/form";
 interface EditButtonProps {
   employee: FormDataProps;
   onUpdate: (updatedEmployee: FormDataProps) => void;
+  onDelete: (employeeId: string) => void;
 }
 
-const EditButton: React.FC<EditButtonProps> = ({ employee, onUpdate }) => {
+const EditButton: React.FC<EditButtonProps> = ({
+  employee,
+  onUpdate,
+  onDelete,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editableEmployee, setEditableEmployee] = useState(employee);
 
@@ -41,7 +46,7 @@ const EditButton: React.FC<EditButtonProps> = ({ employee, onUpdate }) => {
           {isEditing ? "Save" : "Edit"}
         </button>
 
-        <DeleteButton></DeleteButton>
+        <DeleteButton employeeId={employee.id} onDelete={onDelete} />
       </div>
 
       {isEditing ? (

@@ -1,13 +1,49 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-const DeleteButton: React.FC = () => {
+interface DeleteButtonProps {
+  employeeId: string;
+  onDelete: (employeeId: string) => void;
+}
+
+const DeleteButton: React.FC<DeleteButtonProps> = ({
+  employeeId,
+  onDelete,
+}) => {
+  const [loading, setLoading] = useState(false);
+
+  const deleteEmployee = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:4000/delete/employee?employeeId=${employeeId}`,
+        { method: "DELETE" }
+      );
+
+      if (!response.ok) {
+        console.log("Failed to delete employee");
+      }
+
+      console.log("Employee Deleted");
+      onDelete(employeeId);
+    } catch (error) {
+      console.error("Error deleting employee:", error);
+      alert("An error occurred while deleting the employee.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div>
-      <button className="  text-blue-950 font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300">
-        Delete
-      </button>
-    </div>
+    <button
+      onClick={deleteEmployee}
+      disabled={loading}
+      className={`text-blue-950 font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 ${
+        loading ? "opacity-50 cursor-not-allowed" : ""
+      }`}
+    >
+      {loading ? "Deleting..." : "Delete"}
+    </button>
   );
 };
 

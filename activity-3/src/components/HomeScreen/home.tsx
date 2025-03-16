@@ -31,6 +31,12 @@ const HomeScreen: React.FC = () => {
     );
   };
 
+  const handleDelete = (employeeId: string) => {
+    setEmployees((prevEmployees) =>
+      prevEmployees.filter((emp) => emp.id !== employeeId)
+    );
+  };
+
   return (
     <div className="bg-rose-100 flex justify-center items-center h-screen w-screen">
       <div className="flex justify-center items-center flex-col h-screen w-screen pt-5">
@@ -51,7 +57,12 @@ const HomeScreen: React.FC = () => {
                     <EditButton
                       employee={employee}
                       onUpdate={handleUpdate}
+                      onDelete={handleDelete}
                     ></EditButton>
+                    {/* <DeleteButton
+                      employeeId={employee.id}
+                      onDelete={handleDelete}
+                    /> */}
                   </div>
                 </li>
               ))}
