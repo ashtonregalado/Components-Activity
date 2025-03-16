@@ -101,10 +101,9 @@
 //     </div>
 //   );
 // }
-
+//activity-3\src\app\page.tsx
 "use client";
-import HomeScreen from "@/components/HomeScreen/home";
-
+import Main from "@/components/Main/main";
 export default function Page() {
-  return <HomeScreen></HomeScreen>;
+  return <Main></Main>;
 }

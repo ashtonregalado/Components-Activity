@@ -5,6 +5,7 @@ export interface FormDataProps {
   role: string;
   expectedSalary: number;
   expectedDateOfDefense: string;
+  id: string;
 }
 
 export const data: FormDataProps[] = [];
