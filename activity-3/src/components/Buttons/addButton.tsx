@@ -6,7 +6,7 @@ const AddButton: React.FC = () => {
     <div>
       <button
         type="submit"
-        className="bg-blue-950 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300"
+        className="bg-blue-950 hover:bg-white text-white hover:text-blue-950 font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300"
       >
         Add
       </button>

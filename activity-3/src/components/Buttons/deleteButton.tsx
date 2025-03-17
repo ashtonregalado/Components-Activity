@@ -38,7 +38,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
     <button
       onClick={deleteEmployee}
       disabled={loading}
-      className={`text-blue-950 font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 ${
+      className={`bg-blue-950 hover:bg-white text-white hover:text-blue-950 font-bold py-2 px-2 rounded-lg shadow-md transition-all duration-300 ${
         loading ? "opacity-50 cursor-not-allowed" : ""
       }`}
     >

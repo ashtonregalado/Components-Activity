@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use("/get", getRoutes);
 app.use("/post", postRoutes);
-app.use("/put", putRoutes);
+app.use("/patch", putRoutes);
 app.use("/delete", deleteRoutes);
 
 const port = 4000;

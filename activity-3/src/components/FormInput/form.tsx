@@ -127,7 +127,7 @@ const InputForm: React.FC = () => {
             <div className="w-full">
               <button
                 onClick={() => setShowHome(true)}
-                className="w-10 h-10 bg-white border-3 border-blue-950 text-blue-950 rounded-full flex items-center justify-center"
+                className="w-11 h-11 bg-blue-950 hover:bg-white text-white hover:text-blue-950  text-xs rounded-full flex items-center justify-center shadow-md transition-all duration-300"
               >
                 Home
               </button>

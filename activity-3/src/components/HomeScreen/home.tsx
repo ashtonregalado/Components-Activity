@@ -44,9 +44,16 @@ const HomeScreen: React.FC = () => {
           <InputForm></InputForm>
         ) : (
           <>
-            <p className="text-white text-4xl">Employee List</p>
+            <p className="text-white font-bold text-4xl">EMPLOYEE LIST</p>
+            <div className="w-screen flex justify-end">
+              <button
+                className="bg-white hover:bg-blue-950 text-blue-950 hover:text-white rounded-lg font-bold px-4 py-4 mx-8"
+                onClick={() => setShowForm(true)}
+              >
+                + add employee
+              </button>
+            </div>
 
-            <button onClick={() => setShowForm(true)}>Go to Form</button>
             <ul className="grid grid-cols-3 gap-5 h-screen w-screen overflow-y-auto p-8">
               {employees.map((employee) => (
                 <li
@@ -59,10 +66,6 @@ const HomeScreen: React.FC = () => {
                       onUpdate={handleUpdate}
                       onDelete={handleDelete}
                     ></EditButton>
-                    {/* <DeleteButton
-                      employeeId={employee.id}
-                      onDelete={handleDelete}
-                    /> */}
                   </div>
                 </li>
               ))}
