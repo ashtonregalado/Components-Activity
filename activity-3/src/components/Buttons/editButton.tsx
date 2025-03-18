@@ -139,7 +139,7 @@ const EditButton: React.FC<EditButtonProps> = ({
                 name="expectedDateOfDefense"
                 value={editableEmployee.expectedDateOfDefense}
                 onChange={handleChange}
-                className="text-black border border-gray-300 rounded-s flex-grow h-full text-base pl-1"
+                className="text-black border border-gray-300 rounded-s flex-grow h-full text-base "
               />
             )}
           </div>
