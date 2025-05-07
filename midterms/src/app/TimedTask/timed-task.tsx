@@ -1,8 +1,14 @@
 import { Card } from "@/components/ui/card";
 import { type Task } from "../task-type";
 import { format } from "date-fns";
-
-export const TimedTask = ({ task }: { task: Task }) => {
+import { DeleteButton } from "../delete-button";
+export const TimedTask = ({
+  task,
+  onDelete,
+}: {
+  task: Task;
+  onDelete: (id: string) => void;
+}) => {
   const formattedDate = task.dueDate
     ? format(new Date(task.dueDate), "MM/dd/yyyy")
     : "";
@@ -15,6 +21,7 @@ export const TimedTask = ({ task }: { task: Task }) => {
           <div className="text-sm text-gray-600">{task.description}</div>
           <div className="text-sm text-gray-600">{formattedDate}</div>
         </div>
+        <DeleteButton taskId={task.id} onDelete={onDelete}></DeleteButton>
       </Card>
     </div>
   );

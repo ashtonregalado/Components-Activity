@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
-import { TaskFactory } from "./task-manager";
+import { TaskFactory } from "./task-factory";
 import { type Task } from "./task-type";
 
 export type TaskType = "basic" | "timed" | "checklist" | null;

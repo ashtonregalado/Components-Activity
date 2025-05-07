@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import type { Task } from "../task-type";
+import { taskManager } from "../task-manager";
 
 export const CheckListTaskInput = ({
   setTasks,
@@ -23,19 +24,13 @@ export const CheckListTaskInput = ({
     };
 
     try {
-      const response = await fetch("http://localhost:3000/post/post-task", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newTask),
-      });
+      const postData = await taskManager.postTask(newTask);
 
-      if (!response.ok) throw new Error("Failed to add task");
-
-      setTasks((prev) => [...prev, newTask]); // Update local task state
+      setTasks((prev) => [...prev, postData]);
       setTitle("");
       setDescription("");
-    } catch (err) {
-      console.error("Error posting task", err);
+    } catch (error) {
+      console.error("Failed to add task:", error);
     }
   };
 
