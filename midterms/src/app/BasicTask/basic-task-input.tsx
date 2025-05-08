@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import type { Task } from "../task-type";
 import { taskManager } from "../task-manager";
-
+import { v4 as uuidv4 } from "uuid";
 export const BasicTaskInput = ({
   setTasks,
 }: {
@@ -16,7 +16,7 @@ export const BasicTaskInput = ({
     if (!title || !description) return;
 
     const newTask: Task = {
-      id: Date.now().toString(),
+      id: uuidv4(),
       title,
       description,
       complete: false,

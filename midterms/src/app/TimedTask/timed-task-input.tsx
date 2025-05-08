@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { Task } from "../task-type";
 import { taskManager } from "../task-manager";
+import { v4 as uuidv4 } from "uuid";
 export const TimedTaskInput = ({
   setTasks,
 }: {
@@ -23,7 +24,7 @@ export const TimedTaskInput = ({
     if (!title || !description || !date) return;
 
     const newTask: Task = {
-      id: Date.now().toString(),
+      id: uuidv4(),
       title,
       description,
       dueDate: date.toISOString(),
