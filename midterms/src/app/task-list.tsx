@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { TaskSortingStrategy } from "./task-sorting-strategy";
 import { useState } from "react";
-
+import { OverdueAlert } from "./overdue-alert";
 export const TaskList = ({
   tasks,
   setTasks,
@@ -35,6 +35,10 @@ export const TaskList = ({
 
   const sortedTasks = getSortedTasks();
 
+  const overdueTask = tasks.filter(
+    (task) => task.dueDate && new Date(task.dueDate) < new Date()
+  ).length;
+
   return (
     <div className="mb-6">
       {/* UI-Only Filter Dropdown */}
@@ -52,6 +56,8 @@ export const TaskList = ({
           </SelectContent>
         </Select>
       </div>
+
+      <OverdueAlert count={overdueTask}></OverdueAlert>
 
       {sortedTasks.map((task: Task) => {
         if (task.type === "checklist") {
