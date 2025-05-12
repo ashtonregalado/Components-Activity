@@ -14,3 +14,9 @@ To run the activity-3 folder:
 2. npm install
 3. from activity-3 folder, cd backend
 4. npm install
+
+To run the Midterms folder:
+1. cd midterms
+2. npm i & npm run dev
+3. in another terminal, from midterms folder, cd backend
+4. npm i & npm run dev
