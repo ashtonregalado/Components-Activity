@@ -51,7 +51,9 @@ export const CheckListTaskInput = ({
   return (
     <Card
       className={`transition-all duration-200 mb-6 p-4 border ${
-        isActive || isHovered ? "shadow-md border-blue-200" : "shadow-sm"
+        isActive || isHovered
+          ? "shadow-md border-blue-200"
+          : "shadow-sm border-blue-200"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -63,7 +65,7 @@ export const CheckListTaskInput = ({
           onChange={(e) => setTitle(e.target.value)}
           onClick={() => setIsActive(true)}
           onKeyDown={handleKeyDown}
-          className="font-medium border-b border-gray-200 focus:border-blue-200 rounded-md px-3 py-2"
+          className="font-medium border-b border-gray-200  rounded-md px-3 py-2"
           autoComplete="off"
         />
 
@@ -73,7 +75,7 @@ export const CheckListTaskInput = ({
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="text-sm border-b border-gray-200 focus:border-blue-200 rounded-md px-3 py-2"
+            className="text-sm border-b border-gray-200  rounded-md px-3 py-2"
             autoComplete="off"
           />
         )}
@@ -89,7 +91,7 @@ export const CheckListTaskInput = ({
             className={`transition-all ${
               !title.trim() || !description.trim()
                 ? "opacity-50"
-                : "hover:border-blue-00"
+                : "hover:bg-blue-300 hover:text-white bg-blue-200 text-white cursor-pointer"
             }`}
           >
             <ClipboardCheck className="w-4 h-4 mr-2" />

@@ -29,7 +29,7 @@ export const TimedTask = ({
 
   return (
     <Card
-      className={`transition-all duration-200 bg-white 
+      className={`transition-all duration-200 bg-white border-blue-200
         ${isHovered ? "shadow-lg border-blue-200" : "shadow-sm"} 
         ${isOverdue ? "border-l-4 border-l-red-500" : ""}
         relative flex flex-row justify-between items-center p-4 mb-4 border rounded-lg`}
@@ -49,6 +49,7 @@ export const TimedTask = ({
               isOverdue ? "text-red-600 font-medium" : "text-gray-600"
             }`}
           >
+            Task Due: {""}
             {formattedDate}{" "}
             {isOverdue && <span className="font-semibold">(Overdue)</span>}
           </div>
@@ -64,9 +65,9 @@ export const TimedTask = ({
                   className={`transition-opacity ${isHovered ? "opacity-100" : "opacity-80"}`}
                 >
                   {isOverdue ? (
-                    <AlertCircle className="h-5 w-5 text-red-500" />
+                    <AlertCircle className="h-5 w-5 text-red-500 cursor-pointer" />
                   ) : (
-                    <Clock className="h-5 w-5 text-blue-500" />
+                    <Clock className="h-5 w-5 text-blue-500 cursor-pointer" />
                   )}
                 </div>
               </TooltipTrigger>

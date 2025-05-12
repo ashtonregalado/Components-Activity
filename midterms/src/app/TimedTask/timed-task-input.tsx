@@ -76,7 +76,9 @@ export const TimedTaskInput = ({
   return (
     <Card
       className={`transition-all duration-200 mb-6 p-4 border ${
-        isActive || isHovered ? "shadow-md border-blue-200" : "shadow-sm"
+        isActive || isHovered
+          ? "shadow-md border-blue-200"
+          : "shadow-sm border-blue-200"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -88,7 +90,7 @@ export const TimedTaskInput = ({
           onChange={(e) => setTitle(e.target.value)}
           onClick={() => setIsActive(true)}
           onKeyDown={handleKeyDown}
-          className="font-medium border-b border-gray-200 focus:border-blue-300 rounded-md px-3 py-2"
+          className="font-medium  border-gray-200 focus:outline-hidden  rounded-md px-3 py-2"
           autoComplete="off"
         />
 
@@ -98,7 +100,7 @@ export const TimedTaskInput = ({
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="text-sm border-b border-gray-200 focus:border-blue-300 rounded-md px-3 py-2"
+            className="text-sm border-b border-gray-200 rounded-md px-3 py-2"
             autoComplete="off"
           />
         )}
@@ -115,7 +117,7 @@ export const TimedTaskInput = ({
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
-                  className={`w-full justify-start text-left font-normal transition-all ${
+                  className={`w-full justify-start text-left font-normal transition-all cursor-pointer ${
                     !date
                       ? "text-gray-400"
                       : isToday(date)
@@ -128,7 +130,7 @@ export const TimedTaskInput = ({
                 </Button>
               </PopoverTrigger>
               <PopoverContent
-                className="w-auto p-0 border-2 border-blue-200 shadow-lg bg-white"
+                className="w-auto p-0 border-2 border-blue-200 shadow-lg bg-white "
                 align="start"
               >
                 <Calendar
@@ -142,12 +144,13 @@ export const TimedTaskInput = ({
                   disabled={(date) =>
                     date < new Date(new Date().setHours(0, 0, 0, 0))
                   }
-                  className="bg-white rounded-md p-3"
+                  className="bg-white rounded-md p-3 "
                   classNames={{
                     day_selected:
-                      "bg-blue-500 text-white hover:bg-blue-600 hover:text-white font-bold",
-                    day_today: "border-2 border-blue-400 font-semibold",
-                    day: "h-9 w-9 p-0 font-normal aria-selected:opacity-100",
+                      "bg-blue-500 text-white hover:bg-blue-600 hover:text-white font-bold cursor-pointer",
+                    day_today:
+                      "border-2 border-blue-400 font-semibold cursor-pointer",
+                    day: "h-9 w-9 p-0 font-normal aria-selected:opacity-100 cursor-pointer",
                   }}
                 />
               </PopoverContent>
@@ -166,7 +169,7 @@ export const TimedTaskInput = ({
             className={`transition-all ${
               !title.trim() || !date
                 ? "opacity-50 "
-                : "hover:bg-white hover:text-black bg-blue-200 text-white"
+                : "hover:bg-blue-300 hover:text-white bg-blue-200 text-white cursor-pointer"
             }`}
           >
             <Clock className="w-4 h-4 mr-2" />

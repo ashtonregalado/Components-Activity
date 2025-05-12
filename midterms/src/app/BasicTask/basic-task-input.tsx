@@ -35,7 +35,6 @@ export const BasicTaskInput = ({
       setTitle("");
       setDescription("");
 
-      // Keep form expanded if user might want to add multiple tasks
       if (!isHovered) {
         setIsActive(false);
       }
@@ -54,7 +53,9 @@ export const BasicTaskInput = ({
   return (
     <Card
       className={`transition-all duration-200 mb-6 p-4 border ${
-        isActive || isHovered ? "shadow-md border-blue-200" : "shadow-sm"
+        isActive || isHovered
+          ? "shadow-md border-blue-200"
+          : "shadow-sm border-blue-200"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -66,7 +67,7 @@ export const BasicTaskInput = ({
           onChange={(e) => setTitle(e.target.value)}
           onClick={() => setIsActive(true)}
           onKeyDown={handleKeyDown}
-          className="font-medium border-b border-gray-200 focus:border-blue-300 rounded-md px-3 py-2"
+          className="font-medium border-b border-gray-200 rounded-md px-3 py-2"
           autoComplete="off"
         />
 
@@ -76,7 +77,7 @@ export const BasicTaskInput = ({
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="text-sm border-b border-gray-200 focus:border-blue-300 rounded-md px-3 py-2"
+            className="text-sm border-b border-gray-200 rounded-md px-3 py-2"
             autoComplete="off"
           />
         )}
@@ -90,7 +91,9 @@ export const BasicTaskInput = ({
             onClick={handleAddTask}
             disabled={!title.trim()}
             className={`transition-all ${
-              !title.trim() ? "opacity-50" : "hover:bg-blue-600"
+              !title.trim()
+                ? "opacity-50"
+                : "hover:bg-blue-300 hover:text-white bg-blue-200 text-white cursor-pointer"
             }`}
           >
             <PlusCircle className="w-4 h-4 mr-2" />

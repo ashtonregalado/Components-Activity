@@ -14,7 +14,7 @@ export const BasicTask = ({
 
   return (
     <Card
-      className={`transition-all duration-200 bg-white 
+      className={`transition-all duration-200 bg-white border-blue-200
       ${isHovered ? "shadow-lg border-blue-200" : "shadow-sm"} 
       flex flex-row justify-between items-center p-4 mb-4 border rounded-lg`}
       onMouseEnter={() => setIsHovered(true)}

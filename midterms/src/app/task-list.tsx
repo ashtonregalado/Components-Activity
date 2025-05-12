@@ -48,37 +48,36 @@ export const TaskList = ({
 
   return (
     <section className="space-y-2 px-6">
-      {/* Header: Filter + Overdue Alert */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-3">
           <Label htmlFor="task-filter" className="text-base font-medium">
             Sort by:
           </Label>
           <Select onValueChange={setSortBy}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] border-blue-200 cursor-pointer">
               <SelectValue placeholder="Select sort type" />
             </SelectTrigger>
             <SelectContent className="bg-white opacity-100 shadow-md border border-gray-200">
               <SelectItem
-                className="hover:bg-gray-100 focus:bg-gray-100"
+                className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
                 value="default"
               >
                 Default
               </SelectItem>
               <SelectItem
-                className="hover:bg-gray-100 focus:bg-gray-100"
+                className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
                 value="dueDate"
               >
                 Due Date
               </SelectItem>
               <SelectItem
-                className="hover:bg-gray-100 focus:bg-gray-100"
+                className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
                 value="name"
               >
                 Name
               </SelectItem>
               <SelectItem
-                className="hover:bg-gray-100 focus:bg-gray-100"
+                className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
                 value="id"
               >
                 ID
