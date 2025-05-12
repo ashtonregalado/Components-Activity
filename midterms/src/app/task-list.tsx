@@ -13,6 +13,7 @@ import {
 import { TaskSortingStrategy } from "./task-sorting-strategy";
 import { useState } from "react";
 import { OverdueAlert } from "./overdue-alert";
+
 export const TaskList = ({
   tasks,
   setTasks,
@@ -21,62 +22,97 @@ export const TaskList = ({
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }) => {
   const [sortBy, setSortBy] = useState<string>("");
+
   const handleDelete = (id: string) => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   };
 
   const getSortedTasks = () => {
-    if (sortBy === "default") return tasks;
-    if (sortBy === "dueDate") return TaskSortingStrategy.sortByDate(tasks);
-    if (sortBy === "name") return TaskSortingStrategy.sortByName(tasks);
-    if (sortBy === "id") return TaskSortingStrategy.sortById(tasks);
-    return tasks;
+    switch (sortBy) {
+      case "dueDate":
+        return TaskSortingStrategy.sortByDate(tasks);
+      case "name":
+        return TaskSortingStrategy.sortByName(tasks);
+      case "id":
+        return TaskSortingStrategy.sortById(tasks);
+      default:
+        return tasks;
+    }
   };
 
   const sortedTasks = getSortedTasks();
 
-  const overdueTask = tasks.filter(
+  const overdueCount = tasks.filter(
     (task) => task.dueDate && new Date(task.dueDate) < new Date()
   ).length;
 
   return (
-    <div className="mb-6">
-      {/* UI-Only Filter Dropdown */}
-      <div className="mb-4 flex items-center gap-4">
-        <Label htmlFor="task-filter">Sort by:</Label>
-        <Select onValueChange={(value) => setSortBy(value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select task type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="default">Default</SelectItem>
-            <SelectItem value="dueDate">Due Date</SelectItem>
-            <SelectItem value="name">Name</SelectItem>
-            <SelectItem value="id">Id</SelectItem>
-          </SelectContent>
-        </Select>
+    <section className="space-y-2 px-6">
+      {/* Header: Filter + Overdue Alert */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <Label htmlFor="task-filter" className="text-base font-medium">
+            Sort by:
+          </Label>
+          <Select onValueChange={setSortBy}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select sort type" />
+            </SelectTrigger>
+            <SelectContent className="bg-white opacity-100 shadow-md border border-gray-200">
+              <SelectItem
+                className="hover:bg-gray-100 focus:bg-gray-100"
+                value="default"
+              >
+                Default
+              </SelectItem>
+              <SelectItem
+                className="hover:bg-gray-100 focus:bg-gray-100"
+                value="dueDate"
+              >
+                Due Date
+              </SelectItem>
+              <SelectItem
+                className="hover:bg-gray-100 focus:bg-gray-100"
+                value="name"
+              >
+                Name
+              </SelectItem>
+              <SelectItem
+                className="hover:bg-gray-100 focus:bg-gray-100"
+                value="id"
+              >
+                ID
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
-
-      <OverdueAlert count={overdueTask}></OverdueAlert>
-
-      {sortedTasks.map((task: Task) => {
-        if (task.type === "checklist") {
-          return (
-            <CheckListTask key={task.id} task={task} onDelete={handleDelete} />
-          );
-        }
-        if (task.type === "basic") {
-          return (
-            <BasicTask key={task.id} task={task} onDelete={handleDelete} />
-          );
-        }
-        if (task.type === "timed") {
-          return (
-            <TimedTask key={task.id} task={task} onDelete={handleDelete} />
-          );
-        }
-        return null;
-      })}
-    </div>
+      {overdueCount > 0 && <OverdueAlert count={overdueCount} />}
+      {/* Task List */}
+      <div className="grid gap-4">
+        {sortedTasks.map((task) => {
+          switch (task.type) {
+            case "checklist":
+              return (
+                <CheckListTask
+                  key={task.id}
+                  task={task}
+                  onDelete={handleDelete}
+                />
+              );
+            case "basic":
+              return (
+                <BasicTask key={task.id} task={task} onDelete={handleDelete} />
+              );
+            case "timed":
+              return (
+                <TimedTask key={task.id} task={task} onDelete={handleDelete} />
+              );
+            default:
+              return null;
+          }
+        })}
+      </div>
+    </section>
   );
 };

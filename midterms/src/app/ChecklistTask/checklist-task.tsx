@@ -13,6 +13,7 @@ export const CheckListTask = ({
   onDelete: (id: string) => void;
 }) => {
   const [check, setCheck] = useState<boolean | undefined>(task.complete);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleUpdate = async (taskId: string, completed: boolean) => {
     setCheck(completed);
@@ -27,20 +28,46 @@ export const CheckListTask = ({
   };
 
   return (
-    <div>
-      <Card className="flex flex-row justify-between items-center p-4 mb-4 border rounded-lg shadow-md">
-        {/* Checkbox with title and description */}
-        <Checkbox
-          id={`task-${task.id}`}
-          checked={check}
-          onCheckedChange={() => handleUpdate(task.id, !check)}
-        />
-        <div className="flex flex-col ml-4">
-          <div className="font-bold text-lg">{task.title}</div>
-          <div className="text-sm text-gray-600">{task.description}</div>
+    <Card
+      className={`transition-all duration-200 ${check ? "bg-gray-50" : "bg-white"} 
+      ${isHovered ? "shadow-lg border-blue-200" : "shadow-sm"} 
+      flex flex-row justify-between items-center p-4 mb-4 border rounded-lg`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="flex items-center flex-1">
+        <div
+          className={`flex items-center justify-center p-2 ${check ? "opacity-70" : "opacity-100"}`}
+        >
+          <Checkbox
+            id={`task-${task.id}`}
+            checked={check}
+            onCheckedChange={() => handleUpdate(task.id, !check)}
+            className={`h-5 w-5 rounded border-2 ${check ? "bg-green-500 border-green-500 text-white" : "border-gray-300"}`}
+          />
         </div>
-        <DeleteButton taskId={task.id} onDelete={onDelete}></DeleteButton>
-      </Card>
-    </div>
+
+        <div className="flex flex-col ml-3 flex-1">
+          <div
+            className={`font-medium text-base transition-all ${check ? "line-through text-gray-400" : "text-gray-800"}`}
+          >
+            {task.title}
+          </div>
+          {task.description && (
+            <div
+              className={`text-sm mt-1 transition-all ${check ? "text-gray-400" : "text-gray-600"}`}
+            >
+              {task.description}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div
+        className={`ml-4 transition-opacity ${isHovered ? "opacity-100" : "opacity-70"}`}
+      >
+        <DeleteButton taskId={task.id} onDelete={onDelete} />
+      </div>
+    </Card>
   );
 };

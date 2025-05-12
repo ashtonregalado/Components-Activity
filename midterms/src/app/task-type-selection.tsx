@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import { TaskFactory } from "./task-factory";
 import { type Task } from "./task-type";
+import { Button } from "@/components/ui/button";
 
 export type TaskType = "basic" | "timed" | "checklist" | null;
 
@@ -19,19 +20,30 @@ export const TaskTypeSelection = ({
 }) => {
   const [taskType, setTaskType] = useState<TaskType>(null);
   return (
-    <div>
+    <div className="px-6 my-6">
       <DropdownMenu>
-        <DropdownMenuTrigger>Select type of task</DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuTrigger className="mb-6" asChild>
+          <Button variant="outline">Select type of task</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="bg-white opacity-100 shadow-md border border-gray-200">
           <DropdownMenuLabel>Tasks</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => setTaskType("basic")}>
+          <DropdownMenuItem
+            className="hover:bg-gray-100"
+            onClick={() => setTaskType("basic")}
+          >
             Basic Task
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTaskType("checklist")}>
+          <DropdownMenuItem
+            className="hover:bg-gray-100"
+            onClick={() => setTaskType("checklist")}
+          >
             Checklist Task
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTaskType("timed")}>
+          <DropdownMenuItem
+            className="hover:bg-gray-100"
+            onClick={() => setTaskType("timed")}
+          >
             Timed Task
           </DropdownMenuItem>
         </DropdownMenuContent>

@@ -8,7 +8,7 @@ export function OverdueAlert({ count }: { count: number }) {
   if (!visible || count === 0) return null;
 
   return (
-    <Alert className="bg-red-50 border border-red-200 text-red-700 rounded-xl relative pr-10">
+    <Alert className="bg-red-50 border border-red-200 text-red-700 rounded-xl relative pr-10 my-7">
       <AlertTitle className="font-semibold">Attention needed!</AlertTitle>
       <AlertDescription>
         You have {count} overdue task{count > 1 ? "s" : ""}.

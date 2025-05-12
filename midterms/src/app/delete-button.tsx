@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { taskManager } from "./task-manager";
 import { Trash2 } from "lucide-react";
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface DeleteButtonProps {
   taskId: string;
@@ -8,24 +13,25 @@ interface DeleteButtonProps {
 }
 
 export const DeleteButton = ({ taskId, onDelete }: DeleteButtonProps) => {
-  const handleDelete = async () => {
-    try {
-      const response = await taskManager.deleteTask(taskId);
-      onDelete(taskId);
-      console.log(response);
-    } catch (err) {
-      console.error("Delete failed:", err);
-    }
+  const handleDelete = () => {
+    taskManager.deleteTask(taskId);
+    onDelete(taskId);
   };
 
   return (
-    <Button
-      variant="destructive"
-      onClick={handleDelete}
-      className="ml-2 flex items-center gap-1 text-black"
-    >
-      <Trash2 size={16} />
-      Delete
-    </Button>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-red-500 hover:bg-red-100 hover:text-red-600 transition cursor-pointer"
+            onClick={handleDelete}
+          >
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        </TooltipTrigger>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
