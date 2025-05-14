@@ -60,7 +60,7 @@ export const CheckListTaskInput = ({
     >
       <div className="space-y-3">
         <Input
-          placeholder="Checklist title"
+          placeholder="Task title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onClick={() => setIsActive(true)}
@@ -71,7 +71,7 @@ export const CheckListTaskInput = ({
 
         {(isActive || description) && (
           <Input
-            placeholder="Description"
+            placeholder="Description (optional)"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             onKeyDown={handleKeyDown}

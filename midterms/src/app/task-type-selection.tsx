@@ -76,9 +76,12 @@ export const TaskTypeSelection = ({
       </DropdownMenu>
 
       {showClearButton && (
-        <button className="w-4 h-4 ml-4 cursor-pointer" onClick={handleClear}>
+        <Button
+          className="w-6 h-6 ml-4 cursor-pointer hover:bg-gray-100"
+          onClick={handleClear}
+        >
           <X className="w-5 h-5" />
-        </button>
+        </Button>
       )}
 
       {showFactoryUI && taskType && (
